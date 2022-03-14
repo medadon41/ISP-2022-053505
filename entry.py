@@ -13,10 +13,8 @@ class Entry:
         list_d = list(out_dict.items())
         list_d.sort(key=lambda l: l[1])
         list_d.reverse()
-        i = 0
-        while i < k:
-            print(i + 1, list_d[i])
-            i += 1
+
+        print('\n'.join(str(list_d.index(a) + 1) + str(a) for a in list_d[:k]))
 
     @staticmethod
     def main():
@@ -30,3 +28,4 @@ class Entry:
 
 
 Entry.main()
+
