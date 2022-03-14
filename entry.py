@@ -14,7 +14,7 @@ class Entry:
         list_d.sort(key=lambda l: l[1])
         list_d.reverse()
 
-        print('\n'.join(str(list_d.index(a) + 1) + str(a) for a in list_d[:k]))
+        print(*[f'{i} {j}' for i, j in enumerate(list_d[:k])], sep='\n')
 
     @staticmethod
     def main():
