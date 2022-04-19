@@ -5,9 +5,9 @@ from tests import mocks
 
 def test_dumps_and_loads():
     ser = json.JSONSerializer()
-    s = ser.dumps(mocks.mul)
+    s = ser.dumps(mocks.f)
     fun = ser.loads(s)
-    assert 2 * 2 == fun(2, 2)
+    assert isinstance(fun(2), float)
 
 
 def test_dump_and_load():

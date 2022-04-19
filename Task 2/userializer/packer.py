@@ -1,4 +1,6 @@
 """Object attributes' packer."""
+import builtins
+import importlib
 import sys
 import types
 from inspect import getmodule
@@ -103,6 +105,12 @@ def unpack(obj: dict[str, any]):
             globals().update(__main__.__dict__)
             def func(): pass
             func.__code__ = unpack(value)
+            for name in func.__code__.co_names:
+                if builtins.__dict__.get(name, 42) == 42:
+                    try:
+                        builtins.__dict__[name] = importlib.import_module(name)
+                    except ModuleNotFoundError:
+                        builtins.__dict__[name] = 42
             return func
 
         elif(key == 'code'):
